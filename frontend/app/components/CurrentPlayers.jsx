@@ -31,7 +31,7 @@ const CurrentPlayers = () => {
       <h2 className="text-lg font-bold mb-4">Current Players</h2>
       <ul>
         {lotteryPlayers.map((player, index) => (
-          <li key={index} className="mb-2">
+          <li key={index} className="mb-2 text-wrap max-w-full break-words">
             {player}
           </li>
         ))}

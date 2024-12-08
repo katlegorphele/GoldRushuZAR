@@ -60,7 +60,7 @@ const PreviousWinners = () => {
   // Fetch history whenever lotteryId changes
   useEffect(() => {
     if (lotteryId) fetchLotteryHistory();
-  }, [lotteryId]);
+  }, [fetchLotteryHistory]);
 
   return (
     <div className="bg-white text-black shadow rounded-lg p-6">
@@ -68,12 +68,12 @@ const PreviousWinners = () => {
       <ul>
         {lotteryHistory.length > 0 ? (
           lotteryHistory.map((winner) => (
-            <li key={winner.id} className="mb-2">
+            <li key={winner.id} className="mb-2 text-wrap max-w-full break-words">
               <strong>Lottery {winner.id}:</strong> {winner.address}
             </li>
           ))
         ) : (
-          <li>No winners yet.</li>
+          <li>...Loading</li>
         )}
       </ul>
     </div>

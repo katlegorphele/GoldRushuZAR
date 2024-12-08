@@ -37,7 +37,7 @@ const LotteryPotCard = () => {
 
   return (
     <div className="bg-yellow-100 shadow rounded-lg p-6 text-center">
-      <h2 className="text-xl font-bold">Current Lottery Pot</h2>
+      <h2 className="text-xl text-black font-bold">Current Lottery Pot</h2>
       <p className="text-3xl font-bold text-yellow-600 mt-4">uZAR{lotteryPot}</p>
     </div>
   )
