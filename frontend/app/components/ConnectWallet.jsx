@@ -14,6 +14,10 @@ const ConnectWallet = () => {
           chain: defineChain(1135),
           sponsorGas: true,
         }}
+        connectModal={{
+          size: "wide",
+          showThirdwebBranding: false,
+        }}
       />
   )
 }

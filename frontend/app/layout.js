@@ -18,8 +18,8 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Lottery",
-  description: "Account Abstraction Demo",
+  title: "GoldRush uZAR",
+  description: "Enter and Win",
 };
 
 

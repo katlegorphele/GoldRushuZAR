@@ -86,7 +86,7 @@ const ActionButtons = () => {
 
 
   return (
-    <div className='space-y-10' >
+    <div className='space-y-10 max-w' >
       <button
         onClick={handleEnterLottery}
         className='w-full bg-green-600 text-white py-2 px-4 rounded mb-4'>
