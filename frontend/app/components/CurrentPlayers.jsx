@@ -30,7 +30,7 @@ const CurrentPlayers = () => {
   }, [account])
 
   return (
-    <div className="bg-[#0c113b] shadow rounded-lg p-6 h-min w-2/4">
+    <div className="bg-[#0c113b] shadow rounded-lg p-6 h-min md:w-2/4 sm:w-screen">
         <div className="relative overflow-x-auto">
           <p className="text-white text-sm font-semibold">Current Players</p>
           <table className="w-full text-sm text-left rtl:text-right bg-[#0c113b] border-spacing-y-2  border-separate rounded">
@@ -48,7 +48,7 @@ const CurrentPlayers = () => {
                   lotteryPlayers.map((player, index) => (
                     <tr key={index} className="bg-[#121741] text-white">
                       <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
-                        {player.substring(0, 14)}...{player.substring(20, player.length)}
+                        {player.substring(0, 8)}...{player.substring(player.length - 8, player.length)}
                       </td>
                     </tr>
                   ))

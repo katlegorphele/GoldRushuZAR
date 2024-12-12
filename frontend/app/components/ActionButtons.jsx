@@ -94,11 +94,15 @@ const ActionButtons = () => {
           console.log('transactionHash', transactionHash);
       } 
     } catch(error) {
+
+
+
       const update = async () => {
         setIsLoading(false)
         setIsError(true)
-        setMessage(error)
+        setMessage("Not Enough Funds Or \nTransfer Permission Denied")
       }
+
 
       await update()
       
@@ -128,7 +132,7 @@ const ActionButtons = () => {
       console.log(transactionHash)
       
     } catch (error) {
-      setError(error.message);   
+      setMessage(error.message);   
     }
   }
 
@@ -161,6 +165,7 @@ const ActionButtons = () => {
       isOpen={isLoadingModalOpen}
       closeModal={closeModal}
       />
+
 
     </div>
   );

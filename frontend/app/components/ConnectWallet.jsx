@@ -19,12 +19,12 @@ const ConnectWallet = () => {
     <ConnectButton
         theme={customTheme}
         supportedTokens={{
-          [ethereum.id]: [
+          [1135]: [
             {
               address: "0xE29E8434FF23c4ab128AEA088eE4f434129F1Bf1",
               name: "Universel Zar",
               symbol: "uZAR",
-              icon: "https://example.com/icon.png",
+              icon: "...",
             },
           ],
         }}

@@ -63,7 +63,7 @@ const PreviousWinners = () => {
   }, [fetchLotteryHistory]);
 
   return (
-    <div className="bg-[#0c113b] white shadow rounded-lg p-6 h-min w-2/4">
+    <div className="bg-[#0c113b] white shadow rounded-lg p-6 h-min md:w-2/4">
       {/* <h2 className="text-lg font-bold mb-4">Previous Winners</h2>
       <ul>
         
@@ -93,7 +93,7 @@ const PreviousWinners = () => {
                   lotteryHistory.map((winner, index) => (
                     <tr key={index} className="bg-[#121741] text-white">
                       <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
-                        {winner.address.substring(0, 14)}...{winner.address.substring(20, winner.address.length)}
+                        {winner.address.substring(0, 3)}...{winner.address.substring(winner.address.length - 3, winner.address.length)}
                       </th>
                       <td className="px-6 py-4">
                         {winner.id}
