@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react'
 import { getContract, defineChain, prepareContractCall, sendTransaction, readContract } from "thirdweb";
 import { useActiveAccount } from "thirdweb/react";
 import { client } from '../client';
+import ActionButtons from './ActionButtons';
 
 const uZARContract = getContract({
   client: client,
@@ -32,13 +33,17 @@ const LotteryPotCard = () => {
   }, []);
 
 
-
-
-
   return (
-    <div className="bg-yellow-100 shadow rounded-lg p-6 text-center">
-      <h2 className="text-xl text-black font-bold">Current Lottery Pot</h2>
-      <p className="text-3xl font-bold text-yellow-600 mt-4">uZAR{lotteryPot}</p>
+    <div className="bg-[url(https://img.freepik.com/free-photo/three-dimensional-casino-item_23-2151067232.jpg?ga=GA1.1.731547532.1733351132&semt=ais_hybrid)] bg-no-repeat bg-cover bg-top   text-center h-[500px]">
+     <div className='backdrop-blur w-full h-full pt-12 z-0'>
+      <h2 className="text-lg text-slate-300 font-bold capitalize">Lottery Price</h2>
+      <span className=" mt-2 flex gap-x-1 w-full justify-center items-end">
+        <p className='text-md text-slate-300 mb-1 font-semibold'>uZAR</p>
+        <p className='text-5xl font-bold text-white'>{lotteryPot}</p>
+      </span>
+
+      <ActionButtons />
+      </div>
     </div>
   )
 }

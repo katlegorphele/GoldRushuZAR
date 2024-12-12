@@ -63,19 +63,54 @@ const PreviousWinners = () => {
   }, [fetchLotteryHistory]);
 
   return (
-    <div className="bg-white text-black shadow rounded-lg p-6">
-      <h2 className="text-lg font-bold mb-4">Previous Winners</h2>
+    <div className="bg-[#0c113b] white shadow rounded-lg p-6 h-min w-2/4">
+      {/* <h2 className="text-lg font-bold mb-4">Previous Winners</h2>
       <ul>
-        {lotteryHistory.length > 0 ? (
-          lotteryHistory.map((winner) => (
-            <li key={winner.id} className="mb-2 text-wrap max-w-full break-words">
-              <strong>Lottery {winner.id}:</strong> {winner.address}
-            </li>
-          ))
-        ) : (
-          <li>...Loading</li>
-        )}
-      </ul>
+        
+      </ul> */}
+
+
+
+      <div class="relative overflow-x-auto">
+          <p className="text-white text-sm font-semibold">Lottery History</p>
+          <table class="w-full text-sm text-left rtl:text-right bg-[#0c113b] border-spacing-y-2  border-separate rounded">
+              <thead class="text-xs text-slate-400 uppercase">
+                  <tr>
+                      <th scope="col" class="px-6 py-3">
+                          Player ID
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                          Lottery ID
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                          Winning Amount
+                      </th>
+                  </tr>
+              </thead>
+              <tbody className="bg-[#0c113b]">
+
+                {lotteryHistory.length > 0 ? (
+                  lotteryHistory.map((winner) => (
+                    <tr class="bg-[#121741] text-white">
+                      <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                        {winner.address.substring(0, 10)}...
+                      </th>
+                      <td class="px-6 py-4">
+                        {winner.id}
+                      </td>
+                      <td class="px-6 py-4">
+                          500uZar
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <li>...Loading</li>
+                )}
+                  
+              </tbody>
+          </table>
+      </div>
+
     </div>
   );
 };

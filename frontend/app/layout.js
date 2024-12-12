@@ -30,11 +30,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ThirdwebProvider>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#c56ec7] min-h-screen`}
       >
         <Header/>
         <main>{children}</main>
-        <Footer/>
+        {/* <Footer/> */}
       </body>
       </ThirdwebProvider>
     </html>

@@ -44,10 +44,11 @@ const LotteryInfo = () => {
 
 
   return (
-    <div className="bg-white shadow rounded-lg p-6 text-black">
-      <h2 className="text-lg font-bold mb-4">Connected Address Info</h2>
-      <p><strong>Connected Address:</strong> {userAddress}</p>
-      <p><strong>User Balance:</strong> uZAR{userBalance}</p>
+    <div className="bg-white shadow rounded-lg py-1 px-2 text-black">
+      {/* <h2 className="text-lg font-bold mb-4">Connected Address Info</h2> */}
+      {/* <p><strong>Connected Address:</strong> {userAddress}</p> */}
+      <p className='text-[0.67em] font-extralight'>USER BALANCE</p>
+      <p className='text-[0.67em] font-extralight text-slate-700 '>{userBalance} uZAR</p>
     </div>
   )
 }

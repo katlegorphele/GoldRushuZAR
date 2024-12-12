@@ -27,6 +27,11 @@ const ActionButtons = () => {
   const [successMsg, setSuccessMsg] = useState('');
   const [error, setError] = useState('');
   const account = useActiveAccount();
+  const [owner, setOwner] = useState('')
+
+  useEffect(() => {
+    getOwner();
+  }, [account])
 
   const handleEnterLottery = async () => {
     if (account) {
@@ -67,6 +72,16 @@ const ActionButtons = () => {
     }
   };
 
+  const getOwner = async () => {
+    const _owner = readContract({
+      contract: lotteryContract,
+      method: "function owner()",
+      params: [],
+    });
+
+    setOwner(_owner);
+  }
+
   const handlePickWinner = async () => {
     try {
       const transaction = await prepareContractCall({
@@ -86,21 +101,24 @@ const ActionButtons = () => {
 
 
   return (
-    <div className='space-y-10 max-w' >
+    <div className='flex gap-x-4  w-full justify-center h-full items-end pb-24' >
       <button
         onClick={handleEnterLottery}
-        className='w-full bg-green-600 text-white py-2 px-4 rounded mb-4'>
+        className=' bg-[#0091fc] text-white py-2 px-4 rounded mb-4'>
         Enter Lottery
       </button>
 
-      <button
-        onClick={handlePickWinner}
-        className="w-full bg-green-600 text-white py-2 px-4 rounded mb-4">
-        Pick Winner
-      </button>
-      <button className="w-full bg-red-600 text-white py-2 px-4 rounded">
+      {
+        (owner == account) 
+        ? <button
+            onClick={handlePickWinner}
+            className=" bg-[#0091fc] text-white py-2 px-4 rounded mb-4">
+            Pick Winner
+          </button> : <></> 
+      }
+      {/* <button className="w-full bg-red-600 text-white py-2 px-4 rounded">
         Pay Winner
-      </button>
+      </button> */}
     </div>
   );
 };

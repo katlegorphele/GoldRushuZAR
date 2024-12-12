@@ -1,8 +1,9 @@
 'use client'
 
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useActionState} from 'react'
 import { getContract, defineChain,readContract } from "thirdweb";
 import { client } from '../client';
+import { useActiveAccount } from 'thirdweb/react';
 
 const lotteryContract = getContract({
   client: client,
@@ -12,6 +13,8 @@ const lotteryContract = getContract({
 
 const CurrentPlayers = () => {
   const [lotteryPlayers, setPlayers] = useState([])
+
+  const account = useActiveAccount()
 
   const getPlayers = async () => {
     const data = await readContract({
@@ -24,18 +27,38 @@ const CurrentPlayers = () => {
 
   useEffect(() => {
     getPlayers();
-  })
+  }, [account])
 
   return (
-    <div className="bg-white shadow rounded-lg p-6 text-black">
-      <h2 className="text-lg font-bold mb-4">Current Players</h2>
-      <ul>
-        {lotteryPlayers.map((player, index) => (
-          <li key={index} className="mb-2 text-wrap max-w-full break-words">
-            {player}
-          </li>
-        ))}
-      </ul>
+    <div className="bg-[#0c113b] shadow rounded-lg p-6 h-min w-2/4">
+        <div class="relative overflow-x-auto">
+          <p className="text-white text-sm font-semibold">Current Players</p>
+          <table className="w-full text-sm text-left rtl:text-right bg-[#0c113b] border-spacing-y-2  border-separate rounded">
+              <thead className="text-xs text-slate-400 uppercase">
+                  <tr>
+                      <th scope="col" class="px-6 py-3">
+                          Player ID
+                      </th>
+
+                  </tr>
+              </thead>
+              <tbody className="bg-[#0c113b]">
+
+                {lotteryPlayers.length > 0 ? (
+                  lotteryPlayers.map((player) => (
+                    <tr className="bg-[#121741] text-white">
+                      <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
+                        {player.substring(0, 10)}...
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr><td>...Loading</td></tr>
+                )}
+                  
+              </tbody>
+          </table>
+        </div>
     </div>
   )
 }
