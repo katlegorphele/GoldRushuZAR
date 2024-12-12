@@ -71,18 +71,18 @@ const PreviousWinners = () => {
 
 
 
-      <div class="relative overflow-x-auto">
+      <div className="relative overflow-x-auto">
           <p className="text-white text-sm font-semibold">Lottery History</p>
-          <table class="w-full text-sm text-left rtl:text-right bg-[#0c113b] border-spacing-y-2  border-separate rounded">
-              <thead class="text-xs text-slate-400 uppercase">
+          <table className="w-full text-sm text-left rtl:text-right bg-[#0c113b] border-spacing-y-2  border-separate rounded">
+              <thead className="text-xs text-slate-400 uppercase">
                   <tr>
-                      <th scope="col" class="px-6 py-3">
+                      <th scope="col" className="px-6 py-3">
                           Player ID
                       </th>
-                      <th scope="col" class="px-6 py-3">
+                      <th scope="col" className="px-6 py-3">
                           Lottery ID
                       </th>
-                      <th scope="col" class="px-6 py-3">
+                      <th scope="col" className="px-6 py-3">
                           Winning Amount
                       </th>
                   </tr>
@@ -90,21 +90,21 @@ const PreviousWinners = () => {
               <tbody className="bg-[#0c113b]">
 
                 {lotteryHistory.length > 0 ? (
-                  lotteryHistory.map((winner) => (
-                    <tr class="bg-[#121741] text-white">
-                      <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                  lotteryHistory.map((winner, index) => (
+                    <tr key={index} className="bg-[#121741] text-white">
+                      <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                         {winner.address.substring(0, 14)}...{winner.address.substring(20, winner.address.length)}
                       </th>
-                      <td class="px-6 py-4">
+                      <td className="px-6 py-4">
                         {winner.id}
                       </td>
-                      <td class="px-6 py-4">
+                      <td className="px-6 py-4">
                           500uZar
                       </td>
                     </tr>
                   ))
                 ) : (
-                  <li>...Loading</li>
+                  <tr><td>...Loading</td></tr>
                 )}
                   
               </tbody>

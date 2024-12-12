@@ -24,7 +24,7 @@ const Header = () => {
         
         {/* Right Side: Connect Wallet Button */}
         <div className='flex gap-x-2'>
-        <LotteryInfo />
+        {account ? <LotteryInfo /> : <></>}
         <ConnectWallet />
         </div>
       </div>

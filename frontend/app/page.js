@@ -54,7 +54,7 @@ const Tab = ({selected, onChanged}) => {
           onClick={() => {
             onChanged(0)
           }}
-          type="button" class={`text-red-700 ${(selected == 0) ? "bg-[#0ea0fe]" : "bg-[#0c123c]"} hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex gap-x-2`}>
+          type="button" className={`text-red-700 ${(selected == 0) ? "bg-[#0ea0fe]" : "bg-[#0c123c]"} hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex gap-x-2`}>
             <LiveIcon />
             <p className="text-white">Live</p>
           </button>
@@ -62,7 +62,7 @@ const Tab = ({selected, onChanged}) => {
           onClick={() => {
             onChanged(1)
           }}
-          type="button" class={`text-white ${(selected == 1) ? "bg-[#0ea0fe]" : "bg-[#0c123c]"} hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex gap-x-2`}>
+          type="button" className={`text-white ${(selected == 1) ? "bg-[#0ea0fe]" : "bg-[#0c123c]"} hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex gap-x-2`}>
             <HistoryIcon />
             <p>History</p>
           </button>

@@ -31,12 +31,12 @@ const CurrentPlayers = () => {
 
   return (
     <div className="bg-[#0c113b] shadow rounded-lg p-6 h-min w-2/4">
-        <div class="relative overflow-x-auto">
+        <div className="relative overflow-x-auto">
           <p className="text-white text-sm font-semibold">Current Players</p>
           <table className="w-full text-sm text-left rtl:text-right bg-[#0c113b] border-spacing-y-2  border-separate rounded">
               <thead className="text-xs text-slate-400 uppercase">
                   <tr>
-                      <th scope="col" class="px-6 py-3">
+                      <th scope="col" className="px-6 py-3">
                           Player ID
                       </th>
 
@@ -45,8 +45,8 @@ const CurrentPlayers = () => {
               <tbody className="bg-[#0c113b]">
 
                 {lotteryPlayers.length > 0 ? (
-                  lotteryPlayers.map((player) => (
-                    <tr className="bg-[#121741] text-white">
+                  lotteryPlayers.map((player, index) => (
+                    <tr key={index} className="bg-[#121741] text-white">
                       <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                         {player.substring(0, 14)}...{player.substring(20, player.length)}
                       </td>
