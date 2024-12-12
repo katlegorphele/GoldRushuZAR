@@ -93,7 +93,7 @@ const PreviousWinners = () => {
                   lotteryHistory.map((winner) => (
                     <tr class="bg-[#121741] text-white">
                       <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        {winner.address.substring(0, 10)}...
+                        {winner.address.substring(0, 14)}...{winner.address.substring(20, winner.address.length)}
                       </th>
                       <td class="px-6 py-4">
                         {winner.id}

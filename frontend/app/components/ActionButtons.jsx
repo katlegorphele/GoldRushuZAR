@@ -101,10 +101,10 @@ const ActionButtons = () => {
 
 
   return (
-    <div className='flex gap-x-4  w-full justify-center h-full items-end pb-24' >
+    <div className='flex gap-x-4  w-full justify-center  items-end' >
       <button
         onClick={handleEnterLottery}
-        className=' bg-[#0091fc] text-white py-2 px-4 rounded mb-4'>
+        className=' bg-[#0091fc] text-white py-2 px-4 rounded'>
         Enter Lottery
       </button>
 
@@ -112,7 +112,7 @@ const ActionButtons = () => {
         (owner == account) 
         ? <button
             onClick={handlePickWinner}
-            className=" bg-[#0091fc] text-white py-2 px-4 rounded mb-4">
+            className=" bg-[#0091fc] text-white py-2 px-4 rounded">
             Pick Winner
           </button> : <></> 
       }

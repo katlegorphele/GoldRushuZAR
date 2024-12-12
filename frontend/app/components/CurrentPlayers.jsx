@@ -48,7 +48,7 @@ const CurrentPlayers = () => {
                   lotteryPlayers.map((player) => (
                     <tr className="bg-[#121741] text-white">
                       <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
-                        {player.substring(0, 10)}...
+                        {player.substring(0, 14)}...{player.substring(20, player.length)}
                       </td>
                     </tr>
                   ))
