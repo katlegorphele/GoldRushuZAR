@@ -13,7 +13,7 @@ const LoadingModal = ({ message, isError, isSuccess, isLoading, isOpen, closeMod
       id="default-modal" 
       tabIndex="-1" 
       aria-hidden={!isOpen}
-      className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-black bg-opacity-50 overflow-y-auto overflow-x-hidden"
+      className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-opacity-50 overflow-y-auto overflow-x-hidden"
     >
       <div className="flex justify-center relative p-4 w-full max-w-2xl max-h-full">
         <div className="relative bg-[#0b0e38] rounded-lg shadow dark:bg-gray-700 w-1/2">
