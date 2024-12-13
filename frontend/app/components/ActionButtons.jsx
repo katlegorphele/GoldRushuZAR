@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { getContract, defineChain, prepareContractCall, sendTransaction, readContract } from "thirdweb";
 import { useActiveAccount } from "thirdweb/react";
 import { client } from '../client';
 import { toWei } from 'thirdweb';
 import LoadingModal from './Modal';
+import { LotteryAppContext } from '../context/LotteryAppContext';
 
 
 const lotteryContract = getContract({
@@ -33,6 +34,8 @@ const ActionButtons = () => {
   const [isLoadingModalOpen,setIsLoadingModalOpen ] = useState(false)
   const account = useActiveAccount();
   const [owner, setOwner] = useState('')
+  const {setCurrentPlayers, setPreviousWinners} = useContext(LotteryAppContext)
+  const [lotteryId, setLotteryId] = useState(null)
 
   useEffect(() => {
     getOwner();
@@ -47,7 +50,20 @@ const ActionButtons = () => {
     setMessage('')
   }
 
+
+
+  const getPlayers = async () => {
+    const data = await readContract({
+      contract: lotteryContract,
+      method:
+        "function getPlayers() view returns (address[])",
+    });
+    setCurrentPlayers(data);
+  }
+
   const handleEnterLottery = async () => {
+      
+
       try {
         if (account) {
 
@@ -91,6 +107,9 @@ const ActionButtons = () => {
           setMessage("Successfully entered the lottery")
           
           
+          getPlayers();
+
+          
           console.log('transactionHash', transactionHash);
       } 
     } catch(error) {
@@ -119,6 +138,42 @@ const ActionButtons = () => {
     setOwner(_owner);
   }
 
+
+    // Fetch the current lottery ID
+    const fetchLotteryId = async () => {
+      try {
+        const data = await readContract({
+          contract: lotteryContract,
+          method: "function lotteryId() view returns (uint256)",
+        });
+        setLotteryId(Number(data));
+        console.log(data)
+      } catch (error) {
+        console.error("Error fetching lotteryId:", error);
+      }
+    };
+  
+    // Fetch the lottery history
+    const fetchLotteryHistory = async () => {
+      if (!lotteryId) return;
+  
+      const history = [];
+      for (let i = lotteryId - 1; i > 0; i--) {
+        try {
+          const winnerAddress = await readContract({
+            contract: lotteryContract,
+            method: "function getWinnerByLottery(uint256 _lottery) view returns (address)",
+            params: [i],
+          });
+          history.push({ id: i, address: winnerAddress });
+        } catch (error) {
+          console.error(`Error fetching winner for lottery ${i}:`, error);
+        }
+      }
+      setPreviousWinners(history);
+      console.log(history)
+    };
+
   const handlePickWinner = async () => {
     try {
       const transaction = await prepareContractCall({
@@ -130,6 +185,9 @@ const ActionButtons = () => {
         account,
       });
       console.log(transactionHash)
+
+      await fetchLotteryId();
+      await fetchLotteryHistory()
       
     } catch (error) {
       setMessage(error.message);   

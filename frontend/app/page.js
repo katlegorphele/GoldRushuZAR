@@ -6,6 +6,7 @@ import CurrentPlayers from "./components/CurrentPlayers";
 import LotteryPotCard from "./components/LotteryPotCard";
 import PreviousWinners from "./components/PreviousWinners";
 import ActionButtons from "./components/ActionButtons";
+import {LotteryAppContextProvider} from "./context/LotteryAppContext"
 
 import { useState } from "react";
 import { HistoryIcon, LiveIcon } from "./constants/icons";
@@ -15,20 +16,7 @@ export default function Home() {
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
   return (
-    <div className="w-full h-full bg-[#0b0e38] pt-20">
-      {/* Top Section: Lottery Info */}
-      {/* <div>
-        <LotteryInfo />
-      </div> */}
-
-      {/* Main Content: Left and Right Sections */}
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
-        {/* Left Section: Action Buttons */}
-        {/* <div className="bg-white shadow rounded-lg p-6 space-y-4">
-          <ActionButtons/>
-        </div> */}
-
-        {/* Right Section: Current Players, Previous Winners, and Lottery Pot */}
+      <div className="w-full h-full bg-[#0b0e38] pt-20">
         <LotteryPotCard />
         <Tab selected={selectedTabIndex} onChanged={(index) => {
           setSelectedTabIndex(index)
@@ -39,7 +27,6 @@ export default function Home() {
             : <PreviousWinners />
           }
         </div>
-      {/* </div> */}
     </div>
     
   );

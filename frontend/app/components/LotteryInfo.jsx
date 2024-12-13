@@ -1,10 +1,11 @@
 'use client'
 
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { getContract, defineChain, prepareContractCall, sendTransaction, readContract } from "thirdweb";
 import { useActiveAccount } from "thirdweb/react";
 import { client } from '../client';
 import { toWei, fromGwei } from 'thirdweb';
+import { LotteryAppContext } from '../context/LotteryAppContext';
 
 
 
@@ -17,29 +18,30 @@ const uZARContract = getContract({
 const LotteryInfo = () => {
 
   const account = useActiveAccount();
-  const [userBalance, setUserBalance] = useState(0);
-  const [userAddress, setUserAddress] = useState('');
+  const {balance, setBalance} = useContext(LotteryAppContext)
+  // const [userBalance, setUserBalance] = useState(0);
+  // const [userAddress, setUserAddress] = useState('');
 
-  useEffect(() => {
-    if (account) {
-      setUserAddress(account.address)
-    }
-  }, [account])
+  // useEffect(() => {
+  //   if (account) {
+  //     setUserAddress(account.address)
+  //   }
+  // }, [account])
 
   const GetUserBalance = async () => {
     const data = await readContract({
       contract: uZARContract,
       method:
         "function balanceOf(address account) view returns (uint256)",
-      params: [userAddress],
+      params: [account.address],
     });
-    const balance = Number(data) / 10**18;
-    setUserBalance(balance);
+    const _balance = Number(data) / 10**18;
+    setBalance(_balance);
   }
 
   useEffect(() => {
     GetUserBalance()
-  }, [userAddress]);
+  }, [account]);
 
 
 
@@ -48,7 +50,7 @@ const LotteryInfo = () => {
       {/* <h2 className="text-lg font-bold mb-4">Connected Address Info</h2> */}
       {/* <p><strong>Connected Address:</strong> {userAddress}</p> */}
       <p className='text-[0.67em] font-extralight'>USER BALANCE</p>
-      <p className='text-[0.67em] font-extralight text-slate-700 '>{userBalance} uZAR</p>
+      <p className='text-[0.67em] font-extralight text-slate-700 '>{balance} uZAR</p>
     </div>
   )
 }

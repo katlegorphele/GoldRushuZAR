@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getContract, defineChain, readContract } from "thirdweb";
 import { client } from "../client";
+import { LotteryAppContext } from "../context/LotteryAppContext";
 
 const lotteryContract = getContract({
   client: client,
@@ -11,7 +12,7 @@ const lotteryContract = getContract({
 });
 
 const PreviousWinners = () => {
-  const [lotteryHistory, setLotteryHistory] = useState([]);
+  const {previousWinners, setPreviousWinners} = useContext(LotteryAppContext)
   const [lotteryId, setLotteryId] = useState(null);
 
   // Fetch the current lottery ID
@@ -45,7 +46,7 @@ const PreviousWinners = () => {
         console.error(`Error fetching winner for lottery ${i}:`, error);
       }
     }
-    setLotteryHistory(history);
+    setPreviousWinners(history);
     console.log(history)
   };
 
@@ -89,8 +90,8 @@ const PreviousWinners = () => {
               </thead>
               <tbody className="bg-[#0c113b]">
 
-                {lotteryHistory.length > 0 ? (
-                  lotteryHistory.map((winner, index) => (
+                {previousWinners.length > 0 ? (
+                  previousWinners.map((winner, index) => (
                     <tr key={index} className="bg-[#121741] text-white">
                       <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                         {winner.address.substring(0, 3)}...{winner.address.substring(winner.address.length - 3, winner.address.length)}

@@ -1,9 +1,10 @@
 'use client'
 
-import React, {useState, useEffect, useActionState} from 'react'
+import React, {useState, useEffect, useActionState, useContext} from 'react'
 import { getContract, defineChain,readContract } from "thirdweb";
 import { client } from '../client';
 import { useActiveAccount } from 'thirdweb/react';
+import { LotteryAppContext } from '../context/LotteryAppContext';
 
 const lotteryContract = getContract({
   client: client,
@@ -12,17 +13,29 @@ const lotteryContract = getContract({
 });
 
 const CurrentPlayers = () => {
-  const [lotteryPlayers, setPlayers] = useState([])
+  const {currentPlayers,  setCurrentPlayers} = useContext(LotteryAppContext)
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("")
+
 
   const account = useActiveAccount()
 
   const getPlayers = async () => {
-    const data = await readContract({
-      contract: lotteryContract,
-      method:
-        "function getPlayers() view returns (address[])",
-    });
-    setPlayers(data);
+    try {
+      setIsLoading(true);
+      const data = await readContract({
+        contract: lotteryContract,
+        method:
+          "function getPlayers() view returns (address[])",
+      });
+      setCurrentPlayers(data);
+    } catch(error) {
+      setIsError(true)
+      setErrorMessage("Failed to fetch current players")
+    }
+
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -44,8 +57,8 @@ const CurrentPlayers = () => {
               </thead>
               <tbody className="bg-[#0c113b]">
 
-                {lotteryPlayers.length > 0 ? (
-                  lotteryPlayers.map((player, index) => (
+                {currentPlayers.length > 0 ? (
+                  currentPlayers.map((player, index) => (
                     <tr key={index} className="bg-[#121741] text-white">
                       <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                         {player.substring(0, 8)}...{player.substring(player.length - 8, player.length)}
@@ -53,7 +66,7 @@ const CurrentPlayers = () => {
                     </tr>
                   ))
                 ) : (
-                  <tr><td>...Loading</td></tr>
+                  <tr><td>No Current Players</td></tr>
                 )}
                   
               </tbody>
