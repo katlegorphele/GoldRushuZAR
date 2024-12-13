@@ -34,20 +34,26 @@ const LotteryPotCard = () => {
 
 
   return (
-    <div className="bg-[url(https://img.freepik.com/free-photo/three-dimensional-casino-item_23-2151067232.jpg?ga=GA1.1.731547532.1733351132&semt=ais_hybrid)] bg-no-repeat bg-cover bg-top   text-center h-[500px]">
-     <div className='backdrop-blur w-full h-full py-12 z-0 flex flex-col justify-between'>
-      <div>
-        <h2 className="text-lg text-slate-300 font-bold capitalize">Lottery Price</h2>
-        <span className=" mt-2 flex gap-x-1 w-full justify-center items-end">
-          <p className='text-md text-slate-300 mb-1 font-semibold'>uZAR</p>
-          <p className='text-5xl font-bold text-white'>{lotteryBalance}</p>
-        </span>
+    <div className="relative h-[500px] text-center z-0">
+      {/* Background Image with Gradient */}
+      <div className="absolute inset-0 bg-[url('https://img.freepik.com/free-photo/three-dimensional-casino-item_23-2151067232.jpg')] bg-no-repeat bg-cover bg-top sm:to-[#1a1d56]">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0b0e38]"></div>
       </div>
+      
+      {/* Content */}
+      <div className="relative z-10 backdrop-blur w-full h-full py-12 flex flex-col justify-between">
+        <div>
+          <h2 className="text-lg text-slate-300 font-bold capitalize">Lottery Prize</h2>
+          <span className="mt-2 flex gap-x-1 w-full justify-center items-end">
+            <p className="text-md text-slate-300 mb-1 font-semibold">uZAR</p>
+            <p className="text-5xl font-bold text-white">{lotteryBalance}</p>
+          </span>
+        </div>
 
-      <ActionButtons />
+        <ActionButtons />
       </div>
     </div>
-  )
+  );
 }
 
 export default LotteryPotCard
