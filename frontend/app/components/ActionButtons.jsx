@@ -134,7 +134,7 @@ const ActionButtons = () => {
       method: "function owner() view returns (address)",
       params: [],
     });
-    console.log(_owner)
+    // console.log(_owner)
     setOwner("_owner");
   }
 
