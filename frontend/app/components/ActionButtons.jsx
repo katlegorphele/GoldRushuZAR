@@ -129,13 +129,13 @@ const ActionButtons = () => {
   };
 
   const getOwner = async () => {
-    const _owner = readContract({
+    const _owner = await readContract({
       contract: lotteryContract,
-      method: "function owner()",
+      method: "function owner() view returns (address)",
       params: [],
     });
-
-    setOwner(_owner);
+    console.log(_owner)
+    setOwner("_owner");
   }
 
 
@@ -202,15 +202,20 @@ const ActionButtons = () => {
         className=' bg-[#0091fc] text-white py-2 px-4 rounded'>
         Enter Lottery
       </button>
+      <button
+            onClick={handlePickWinner}
+            className=" bg-[#0091fc] text-white py-2 px-4 rounded">
+            Pick Winner
+          </button>
 
-      {
+      {/* {
         (owner == account) 
         ? <button
             onClick={handlePickWinner}
             className=" bg-[#0091fc] text-white py-2 px-4 rounded">
             Pick Winner
           </button> : <></> 
-      }
+      } */}
       {/* <button className="w-full bg-red-600 text-white py-2 px-4 rounded">
         Pay Winner
       </button> */}
