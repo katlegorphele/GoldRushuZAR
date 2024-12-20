@@ -4,7 +4,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import { getContract, defineChain, prepareContractCall, sendTransaction, readContract } from "thirdweb";
 import { useActiveAccount } from "thirdweb/react";
 import { client } from '../client';
-import { toWei } from 'thirdweb';
 import LoadingModal from './Modal';
 import { LotteryAppContext } from '../context/LotteryAppContext';
 
@@ -39,6 +38,7 @@ const ActionButtons = () => {
 
   useEffect(() => {
     getOwner();
+    console.log(owner)
   }, [account])
 
 
@@ -134,8 +134,8 @@ const ActionButtons = () => {
       method: "function owner() view returns (address)",
       params: [],
     });
-    // console.log(_owner)
-    setOwner("_owner");
+    setOwner(_owner);
+    
   }
 
 
@@ -202,20 +202,14 @@ const ActionButtons = () => {
         className=' bg-[#0091fc] text-white py-2 px-4 rounded'>
         Enter Lottery
       </button>
-      <button
-            onClick={handlePickWinner}
-            className=" bg-[#0091fc] text-white py-2 px-4 rounded">
-            Pick Winner
-          </button>
-
-      {/* {
-        (owner == account) 
+      {
+        (owner?.toLowerCase() === account?.address?.toLowerCase()) 
         ? <button
             onClick={handlePickWinner}
             className=" bg-[#0091fc] text-white py-2 px-4 rounded">
             Pick Winner
           </button> : <></> 
-      } */}
+      }
       {/* <button className="w-full bg-red-600 text-white py-2 px-4 rounded">
         Pay Winner
       </button> */}
